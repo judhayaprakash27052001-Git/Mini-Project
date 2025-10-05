@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome — Mini Project</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0f172a; /* dark navy */
+      --bg2:#071023; /* darker */
+      --accent1:#7c3aed; /* violet */
+      --accent2:#06b6d4; /* teal */
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.03);
+      --text: #e6eef8;
+      --muted: #9fb0c8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent 6%),
+                  radial-gradient(900px 400px at 90% 90%, rgba(6,182,212,0.08), transparent 8%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow:hidden;
+    }
+
+    /* center layout */
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 24px;
+      gap:32px;
+    }
+
+    .card{
+      width:100%;
+      max-width:1100px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;
+      padding:28px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      box-shadow:0 10px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px) saturate(120%);
+      transform:translateY(20px);
+      animation: floatIn 900ms cubic-bezier(.2,.9,.2,1) forwards;
+    }
+
+    @keyframes floatIn{
+      from{opacity:0; transform:translateY(20px) scale(0.995)}
+      to{opacity:1; transform:translateY(0) scale(1)}
+    }
+
+    /* left content */
+    .hero{
+      padding:12px 6px;
+    }
+    .kicker{
+      display:inline-block;
+      padding:6px 12px;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:white;
+      border-radius:999px;
+      font-weight:600;
+      font-size:13px;
+      letter-spacing:0.6px;
+      box-shadow:0 6px 18px rgba(12,8,40,0.45);
+      transform:translateY(-6px);
+      opacity:0;
+      animation: appear .6s .25s forwards;
+    }
+
+    @keyframes appear{from{opacity:0; transform:translateY(-6px) } to{opacity:1; transform:none}}
+
+    h1{
+      margin:18px 0 10px 0;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height:1.03;
+      letter-spacing:-0.02em;
+      color:var(--text);
+      opacity:0;
+      transform:translateY(6px);
+      animation: slideUp .6s .4s forwards;
+    }
+    @keyframes slideUp{to{opacity:1; transform:none}}
+
+    p.lead{
+      margin:8px 0 22px 0;
+      color:var(--muted);
+      font-size:15px;
+      max-width:60ch;
+      opacity:0; transform:translateY(6px);
+      animation: slideUp .6s .55s forwards;
+    }
+
+    /* CTA */
+    .ctas{display:flex; gap:12px; align-items:center}
+      box-shadow: 0 8px 22px rgba(12,8,40,0.5);
+    .btn-primary{
+    .preview{
+      border-radius:12px; padding:18px; min-height:280px; display:flex; flex-direction:column; gap:12px; justify-content:center;
+      border:1px solid rgba(255,255,255,0.03);
+      position:relative; overflow:hidden;
+    }
+
+    /* floating UI mock */
+    .mock{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 12px 40px rgba(2,6,23,0.45);
+      transform: translateY(0) rotate(-1deg); transition:transform .45s cubic-bezier(.2,.9,.2,1);
+    }
+    .mock:hover{ transform: translateY(-6px) rotate(-0.4deg) }
+
+    .mock .title{font-weight:700; font-size:14px}
+    .mock .meta{font-size:13px; color:var(--muted)}
+    .stat-row{display:flex; gap:8px; align-items:center}
+    .stat{flex:1; padding:10px; border-radius:8px; background:var(--glass); border:1px solid rgba(255,255,255,0.02); text-align:center}
+    .stat strong{display:block; font-size:18px}
+
+    /* animated shapes */
+    .orb{
+      position:absolute; width:280px; height:280px; border-radius:999px; filter: blur(40px); opacity:.24; pointer-events:none;
+      transform: translate(-20%, -30%) scale(1);
+      animation: slowOrbit 12s linear infinite;
+      background: radial-gradient(circle at 20% 10%, rgba(124,58,237,0.9), transparent 30%), radial-gradient(circle at 80% 90%, rgba(6,182,212,0.8), transparent 30%);
+    }
+    @keyframes slowOrbit{0%{transform:translate(-20%,-30%) rotate(0) scale(1)}50%{transform:translate(10%,-10%) rotate(180deg) scale(1.05)}100%{transform:translate(-20%,-30%) rotate(360deg) scale(1)}}
+
+    /* tiny animated dots */
+    .dots{position:absolute; inset:12px; pointer-events:none}
+    .dot{position:absolute; width:6px; height:6px; border-radius:99px; background:rgba(255,255,255,0.06); box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+
+    /* responsiveness */
+    @media (max-width:980px){
+      .card{grid-template-columns: 1fr; max-width:920px}
+      .preview{order:-1}
+    }
+
+    @media (max-width:520px){
+      .card{padding:18px}
+      .kicker{font-size:12px}
+      .ctas{flex-direction:column; align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main class="card" role="main" aria-labelledby="welcome-title">
+      <section class="hero">
+        <span class="kicker">Mini Project</span>
+        <h1 id="welcome-title">Welcome to the Mini Project — Clean animated UI</h1>
+        <p class="lead">A compact, responsive welcome page with subtle motion and a modern glassy look — perfect as a starting screen for demos, portfolios or small web apps.</p>
+
+        <div class="ctas" role="group" aria-label="Primary actions">
+          <button class="btn btn-primary" id="getStarted">Get Started</button>
+          <button class="btn btn-ghost" id="learnMore">Learn more</button>
+        </div>
+
+        <div style="height:22px"></div>
+
+        <div aria-hidden="true" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+          <div style="font-size:13px; color:var(--muted)">Built with: HTML • CSS • JS</div>
+          <div style="width:6px;height:6px;border-radius:99px;background:rgba(255,255,255,0.04)"></div>
+          <div style="font-size:13px; color:var(--muted)">Responsive • Accessible</div>
+        </div>
+      </section>
+
+      <aside class="preview" aria-hidden="true">
+        <div class="orb" style="right:-60px; top:-120px"></div>
+        <div class="dots" id="dots"></div>
+
+        <div class="mock" id="mockCard">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <div>
+              <div class="title">Dashboard preview</div>
+              <div class="meta">Realtime stats at a glance</div>
+            </div>
+            <div style="font-size:12px; color:var(--muted)">v0.1</div>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat"><strong>124</strong><span class="meta">Active users</span></div>
+            <div class="stat"><strong>78%</strong><span class="meta">Satisfaction</span></div>
+            <div class="stat"><strong>32</strong><span class="meta">Tasks</span></div>
+          </div>
+        </div>
+
+      </aside>
+
+    </main>
+  </div>
+
+  <script>
+    // tiny interactive bits
+    const dots = document.getElementById('dots');
+    // create some decorative dots
+    for(let i=0;i<18;i++){
+      const d=document.createElement('div');
+      d.className='dot';
+      d.style.left = Math.random()*100 + '%';
+      d.style.top  = Math.random()*100 + '%';
+      const s = 6 + Math.floor(Math.random()*10);
+      d.style.width = s + 'px'; d.style.height = s + 'px';
+      d.style.opacity = 0.08 + Math.random()*0.24;
+      d.style.transform = 'translate(-50%,-50%)';
+      dots.appendChild(d);
+    }
+
+    // subtle parallax on mouse move inside preview
+    const preview = document.querySelector('.preview');
+    preview.addEventListener('mousemove', (e)=>{
+      const r = preview.getBoundingClientRect();
+      const mx = (e.clientX - r.left) / r.width - 0.5;
+      const my = (e.clientY - r.top) / r.height - 0.5;
+      const mock = document.getElementById('mockCard');
+      mock.style.transform = `translateX(${mx*10}px) translateY(${my*8}px) rotate(${mx*2}deg)`;
+    });
+    preview.addEventListener('mouseleave', ()=>{
+      const mock = document.getElementById('mockCard');
+      mock.style.transform='translateY(0) rotate(-1deg)';
+    });
+
+    // basic button hooks
+    document.getElementById('getStarted').addEventListener('click', ()=>{
+      alert('Get started clicked — replace this with navigation to your app.');
+    });
+    document.getElementById('learnMore').addEventListener('click', ()=>{
+      window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
+      border-radius:10px; padding:14px; display:flex; flex-direction:column; gap:10px; width:100%;
+      transform:translateY(6px); opacity:0; animation: slideUp .6s .8s forwards;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    /* right preview */
+
+    }
+    .btn:focus{outline:2px solid rgba(124,58,237,0.2)}
+      background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.06);
+    .btn-ghost{
+      color:white;
+    }
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    }
+      transform:translateY(6px); opacity:0; animation: slideUp .6s .7s forwards;
+      appearance:none; border:0; padding:12px 18px; border-radius:12px; cursor:pointer; font-weight:600; font-size:15px;
+
